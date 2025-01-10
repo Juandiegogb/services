@@ -30,7 +30,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - SERVERURL=alansoft.duckdns.org
+      - SERVERURL=186.145.196.10
       - SERVERPORT=51820
       - PEERS=2
       - PEERDNS=auto
