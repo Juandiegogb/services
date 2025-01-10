@@ -32,7 +32,7 @@ services:
       - SERVERURL=alansoft.duckdns.org
       - SERVERPORT=51820
       - PEERS=2
-      - PEERDNS=8.8.8.8
+      - PEERDNS=192.168.1.150
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - ./config:/config 
