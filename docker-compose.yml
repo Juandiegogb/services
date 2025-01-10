@@ -26,6 +26,7 @@ services:
   
   wireguard:
     image: linuxserver/wireguard
+    container_name: wireguard
     environment:
       - PUID=1000
       - PGID=1000
