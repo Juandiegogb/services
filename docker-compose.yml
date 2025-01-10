@@ -1,0 +1,35 @@
+services:
+  duckdns:
+    image: linuxserver/duckdns
+    container_name: duckdns
+    environment:
+      - TZ=America/Bogota
+      - SUBDOMAINS=alansoft
+      - TOKEN=${DUCKDNS_TOKEN}
+    restart: always
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    environment:
+      TZ: 'America/Bogota'
+      WEBPASSWORD: 'admin'
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    restart: always
+    networks:
+      pihole_net:
+        ipv4_address: 192.168.1.150
+
+networks:
+  pihole_net:
+    driver: macvlan
+    driver_opts:
+      parent: enp2s0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
