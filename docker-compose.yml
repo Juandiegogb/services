@@ -33,7 +33,7 @@ services:
       - SERVERURL=alansoft.duckdns.org
       - SERVERPORT=51820
       - PEERS=2
-      - PEERDNS=8.8.8.8
+      - PEERDNS=auto
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - ./config:/config 
@@ -41,6 +41,8 @@ services:
       - "51820:51820/udp" 
     cap_add:
       - NET_ADMIN 
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
 
 networks:
